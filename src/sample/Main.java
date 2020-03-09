@@ -12,7 +12,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("探测存活主机（ipScan）");
-        primaryStage.setScene(new Scene(root, 300, 275));
+
+        //创建一个新的面板
+        Controller controller = new Controller();
+        Scene root1 = controller.createPane();
+        primaryStage.setScene(root1);
+
+//        primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
 
