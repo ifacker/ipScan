@@ -63,7 +63,7 @@ public class Controller {
 
         root.add(vBox, 0, 0);
 
-        Scene scene = new Scene(root, 665, 400);
+        Scene scene = new Scene(root, 670, 400);
         return scene;
     }
 }
