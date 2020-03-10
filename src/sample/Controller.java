@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,10 +10,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import sun.font.TextLabel;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
 
 public class Controller {
-    public Scene createPane(){
+    public Scene createPane(Stage primaryStage){
         //以 GridPane 作为底板
         GridPane root = new GridPane();
 
@@ -37,6 +43,25 @@ public class Controller {
         Label labelGood = new Label("Good IP:");
         Label labelBad = new Label("Bad IP:");
 
+        //给各个控件赋能
+        btnAdd.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser fileChooser = new FileChooser();
+                File file = fileChooser.showOpenDialog(primaryStage);
+                if (file == null) {
+                    return;
+                }
+                //获取选择目录的地址
+                String filePath = file.getPath();
+            }
+        });
+        btnStart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
 
         textAreaIn.setPromptText("请输入 IP 地址...\r\n比如：\r\n192.168.1.1\r\n192.168.1.2");
         textAreaOutGood.setPromptText("这里显示可以访问的 IP 地址...");
