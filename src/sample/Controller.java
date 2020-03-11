@@ -10,16 +10,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import sample.function.OpenFile;
 
 import java.io.File;
+import java.util.List;
 
 public class Controller {
     public Scene createPane(Stage primaryStage){
         //以 GridPane 作为底板
         GridPane root = new GridPane();
+
+        //创建一个 GridPane 面板，主要是为了排列 hBoxUp 的按钮
+        GridPane btnGridPane = new GridPane();
+//        btnGridPane.setPadding(new Insets(5.5));
+        btnGridPane.setVgap(5.5);
+        btnGridPane.setHgap(5.5);
 
         //创建垂直排列的面板
         VBox vBox = new VBox(5.5);
@@ -33,6 +40,9 @@ public class Controller {
         //创建按钮
         Button btnAdd = new Button("导入 IP");
         Button btnStart = new Button("开始扫描");
+        Button btnClear = new Button("清理 IP");
+        Button btnFuck = new Button("一键日卫星");
+        Button btnSetting = new Button("设置");
 
         //创建textArea
         TextArea textAreaIn = new TextArea();
@@ -54,12 +64,35 @@ public class Controller {
                 }
                 //获取选择目录的地址
                 String filePath = file.getPath();
+
+                //打开并读取文件
+                OpenFile openFile = new OpenFile();
+                List<String> ipList = openFile.readFile(filePath);
+                for (String ip:ipList){
+                    textAreaIn.setText(textAreaIn.getText() + ip+ "\r\n" );
+                }
             }
         });
         btnStart.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
 
+            }
+        });
+        btnClear.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+            }
+        });
+        btnSetting.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Stage stage = new Stage();
+                Setting setting = new Setting();
+                Scene scene = setting.setConfig(stage);
+                stage.setScene(scene);
+                stage.show();
             }
         });
 
@@ -70,8 +103,14 @@ public class Controller {
         vBox.setPadding(new Insets(5.5));
 
         hBoxUp.getChildren().add(textAreaIn);
-        hBoxUp.getChildren().add(btnAdd);
-        hBoxUp.getChildren().add(btnStart);
+        hBoxUp.getChildren().add(btnGridPane);
+        btnGridPane.add(btnStart, 0, 0);
+        btnGridPane.add(btnAdd, 0, 1);
+        btnGridPane.add(btnClear, 0,2);
+        btnGridPane.add(btnSetting, 0, 3);
+//        btnGridPane.add(btnFuck, 0,3);
+//        hBoxUp.getChildren().add(btnAdd);
+//        hBoxUp.getChildren().add(btnStart);
 
         vBoxGood.getChildren().add(labelGood);
         vBoxGood.getChildren().add(textAreaOutGood);

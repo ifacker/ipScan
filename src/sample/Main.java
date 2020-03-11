@@ -13,8 +13,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         //测试类
-        Test test = new Test();
-        test.openFile();
+//        Test test = new Test();
+//        test.openFile();
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("探测存活主机（ipScan）");
