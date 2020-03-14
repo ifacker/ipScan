@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.dataType.ConfigType;
+import sample.function.OpenFile;
 import sample.test.Test;
 
 public class Main extends Application {
@@ -14,10 +16,16 @@ public class Main extends Application {
 
         //测试类
 //        Test test = new Test();
-//        test.openFile();
+//        test.command("whoami");
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("探测存活主机（ipScan）");
+
+        //加载配置文件
+//        ConfigType configType = new ConfigType();
+//        OpenFile openFile = new OpenFile();
+//        configType = openFile.readConfigFile();
+
 
         //创建一个新的面板
         Controller controller = new Controller();

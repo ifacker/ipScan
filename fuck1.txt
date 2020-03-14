@@ -1,0 +1,16 @@
+# Nmap 7.80 scan initiated Fri Mar 13 15:18:55 2020 as: nmap -sn -v -iL ip.txt -oG fuck1.txt
+# Ports scanned: TCP(0;) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+Host: 10.54.18.236 ()	Status: Up
+Host: 10.54.18.237 ()	Status: Up
+Host: 10.54.19.60 ()	Status: Up
+Host: 10.54.19.65 ()	Status: Up
+Host: 10.54.19.66 ()	Status: Up
+Host: 10.54.19.67 ()	Status: Up
+Host: 10.54.19.68 ()	Status: Up
+Host: 10.54.19.71 ()	Status: Up
+Host: 10.54.19.72 ()	Status: Up
+Host: 10.54.19.73 ()	Status: Up
+Host: 10.54.19.74 ()	Status: Up
+Host: 10.54.19.75 ()	Status: Down
+Host: 192.168.1.1 ()	Status: Down
+# Nmap done at Fri Mar 13 15:19:02 2020 -- 13 IP addresses (11 hosts up) scanned in 6.74 seconds

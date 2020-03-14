@@ -10,13 +10,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import sample.function.SaveFile;
+import sample.dataType.ConfigType;
+import sample.function.FileFun;
 
 import java.io.File;
 
 
 public class Setting {
-    public Scene setConfig(Stage stage){
+    public Scene setConfig(Stage stage, ConfigType configType){
         //创建一个 FlowPane
         FlowPane flowPane = new FlowPane();
         flowPane.setPadding(new Insets(5.5));
@@ -28,6 +29,9 @@ public class Setting {
 
         //创建一个输入框
         TextField textFieldSetNamePath = new TextField();
+        if (configType != null) {
+            textFieldSetNamePath.setText(configType.getConfigBody());
+        }
 
         //创建按钮
         Button btnSubmit = new Button("确定");
@@ -47,8 +51,11 @@ public class Setting {
         btnSubmit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SaveFile saveFile = new SaveFile();
-                saveFile.saveConfigPath(textFieldSetNamePath.getText());
+
+                FileFun fileFun = new FileFun();
+                String nmapConfig = "nmapPath:" + textFieldSetNamePath.getText() + ";\r\n";
+                String filePath = "config.ini";
+                fileFun.saveFile(filePath, nmapConfig);
                 stage.close();
             }
         });
