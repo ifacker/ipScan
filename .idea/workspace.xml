@@ -2,38 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuck.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fuck1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ip.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/dataType/ConfigType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/dataType/HostStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/function/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/function/FileFun.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/function/LoadConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.iptmp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.iptmp2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Controller$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Controller$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Controller$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Controller$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Controller$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Controller$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Setting$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Setting$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Setting$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Setting$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/Setting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/Setting.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/function/IpScan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/function/IpScan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/function/OpenFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/function/OpenFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/function/SaveFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/test/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/test/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/test/ip.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ipScan/sample/function/LoadConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ipScan/sample/function/LoadConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Setting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Setting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/function/IpScan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/function/IpScan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/function/OpenFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/function/OpenFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/function/SaveFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/test/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/test/ip.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/function/LoadConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/function/LoadConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,48 +295,52 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="597" y="718" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1583761498402" />
-    <state width="1398" height="263" key="GridCell.Tab.0.bottom" timestamp="1584086883624">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1340" height="328" key="GridCell.Tab.0.bottom" timestamp="1584201871913">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1340" height="265" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1583766434733" />
+    <state width="1340" height="328" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1584201871913" />
     <state width="1398" height="263" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1584086868009" />
     <state width="1398" height="263" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1584086883624" />
-    <state width="1398" height="263" key="GridCell.Tab.0.center" timestamp="1584086883621">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1340" height="328" key="GridCell.Tab.0.center" timestamp="1584201871913">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1340" height="265" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1583766434733" />
+    <state width="1340" height="328" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1584201871913" />
     <state width="1398" height="263" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1584086868008" />
     <state width="1398" height="263" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1584086883621" />
-    <state width="1398" height="263" key="GridCell.Tab.0.left" timestamp="1584086883620">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1340" height="328" key="GridCell.Tab.0.left" timestamp="1584201871913">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1340" height="265" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1583766434733" />
+    <state width="1340" height="328" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1584201871913" />
     <state width="1398" height="263" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1584086868007" />
     <state width="1398" height="263" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1584086883620" />
-    <state width="1398" height="263" key="GridCell.Tab.0.right" timestamp="1584086883622">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1340" height="328" key="GridCell.Tab.0.right" timestamp="1584201871913">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1340" height="265" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1583766434733" />
+    <state width="1340" height="328" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1584201871913" />
     <state width="1398" height="263" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1584086868008" />
     <state width="1398" height="263" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1584086883622" />
-    <state width="1398" height="263" key="GridCell.Tab.1.bottom" timestamp="1584086877919">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1340" height="328" key="GridCell.Tab.1.bottom" timestamp="1584201871913">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state width="1340" height="328" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1584201871913" />
     <state width="1398" height="263" key="GridCell.Tab.1.bottom/0.23.1440.821@0.23.1440.821" timestamp="1584086867338" />
     <state width="1398" height="263" key="GridCell.Tab.1.bottom/0.23.1440.822@0.23.1440.822" timestamp="1584086877919" />
-    <state width="1398" height="263" key="GridCell.Tab.1.center" timestamp="1584086877917">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1340" height="328" key="GridCell.Tab.1.center" timestamp="1584201871913">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state width="1340" height="328" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1584201871913" />
     <state width="1398" height="263" key="GridCell.Tab.1.center/0.23.1440.821@0.23.1440.821" timestamp="1584086867335" />
     <state width="1398" height="263" key="GridCell.Tab.1.center/0.23.1440.822@0.23.1440.822" timestamp="1584086877917" />
-    <state width="1398" height="263" key="GridCell.Tab.1.left" timestamp="1584086877917">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1340" height="328" key="GridCell.Tab.1.left" timestamp="1584201871913">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state width="1340" height="328" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1584201871913" />
     <state width="1398" height="263" key="GridCell.Tab.1.left/0.23.1440.821@0.23.1440.821" timestamp="1584086867334" />
     <state width="1398" height="263" key="GridCell.Tab.1.left/0.23.1440.822@0.23.1440.822" timestamp="1584086877917" />
-    <state width="1398" height="263" key="GridCell.Tab.1.right" timestamp="1584086877918">
-      <screen x="0" y="23" width="1440" height="822" />
+    <state width="1340" height="328" key="GridCell.Tab.1.right" timestamp="1584201871913">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state width="1340" height="328" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1584201871913" />
     <state width="1398" height="263" key="GridCell.Tab.1.right/0.23.1440.821@0.23.1440.821" timestamp="1584086867336" />
     <state width="1398" height="263" key="GridCell.Tab.1.right/0.23.1440.822@0.23.1440.822" timestamp="1584086877918" />
     <state x="227" y="23" width="1024" height="821" key="SettingsEditor" timestamp="1584006728385">
@@ -402,13 +387,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/function/IpScan.java</url>
-          <line>112</line>
+          <line>168</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>120</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/function/IpScan.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="23" />
+          <line>75</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/function/IpScan.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/function/IpScan.java</url>
+          <line>99</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/function/IpScan.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

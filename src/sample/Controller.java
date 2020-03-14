@@ -96,6 +96,11 @@ public class Controller {
         btnStart.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                //清理输出窗口
+                textAreaOutGood.setText("");
+                textAreaOutBad.setText("");
+
 //                OpenFile openFile = new OpenFile();
 //                ConfigType configType = openFile.readConfigFile();
                 //加载配置文件
@@ -113,9 +118,9 @@ public class Controller {
                     HostStatus hostStatus = ipScan.hostLife(ipAll);
 
                     //处理 good IP 和 bad IP 并分别显示
-                    if (hostStatus != null && hostStatus.getStatus()){
+                    if (hostStatus.getStatus() != null && hostStatus.getStatus()){
                         textAreaOutGood.setText(hostStatus.getHost());
-                    } else if (hostStatus != null && !hostStatus.getStatus()) {
+                    } else if (hostStatus.getStatus() != null && !hostStatus.getStatus()) {
                         textAreaOutBad.setText(hostStatus.getHost());
                     }
                 } else {

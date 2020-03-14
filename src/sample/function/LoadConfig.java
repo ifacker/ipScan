@@ -23,7 +23,16 @@ public class LoadConfig {
         }
         String nmapPath = str.split(";")[0];
         configType.setConfigTitle(nmapPath.split(":")[0]);
-        configType.setConfigBody(nmapPath.split(":")[1]);
+//        String nmap2tmp = ;
+//        int a = nmapPath.split(":").length;
+//        if (a != 1) {
+//            configType.setConfigBody(nmapPath.split(":")[1]);
+//        }
+
+        int start = nmapPath.indexOf(":");
+
+        configType.setConfigBody(nmapPath.substring(start + 1));
+
         return configType;
     }
 }
