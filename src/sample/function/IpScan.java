@@ -5,6 +5,8 @@ import sample.dataType.HostStatus;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 //这里可以添加多个扫描类型
 public class IpScan {
@@ -44,7 +46,7 @@ public class IpScan {
 //    }
 
 
-    public HostStatus hostLife(String body) {
+    public List<HostStatus> hostLife(String body) {
         FileFun fileFun = new FileFun();
         String tmpFilePath = ".iptmp.txt";
         String tmp2FilePath = ".iptmp2.txt";
@@ -94,7 +96,7 @@ public class IpScan {
 //        }
 
         //解析反馈的结果
-        HostStatus hostStatus = new HostStatus();
+        List<HostStatus> ipList = new ArrayList<>();
 
         //读取缓存文件
 //        File filetmp2 = new File(".iptmp2.txt");
@@ -141,18 +143,36 @@ public class IpScan {
 
         //直接使用命令反馈来处理结果
         String str = "";
-            try {
-                while ((str = bufferedReaderInput.readLine())== null){
-                    //未完待续。。。
+        try {
+            String ip = "";
+            while ((str = bufferedReaderInput.readLine()) != null) {
+                //未完待续。。。
+
+                HostStatus hostStatus = new HostStatus();
+                if (str.startsWith("Nmap scan report for ")) {
+                    System.out.println("ok");
+                    ip = str.split("for ")[1];
+
+                    if (str.indexOf("[host down]") != -1) {
+                        ip = ip.split(" \\[host down\\]")[0];
+                        hostStatus.setStatus(false);
+                        hostStatus.setHost(ip);
+                        ipList.add(hostStatus);
+                    }
+                } else if (str.startsWith("Host is up")) {
+                    hostStatus.setStatus(true);
+                    hostStatus.setHost(ip);
+                    ipList.add(hostStatus);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-            fileFun.deleteFile(tmpFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        fileFun.deleteFile(tmpFilePath);
 
         fileFun.deleteFile(tmp2FilePath);
 
-        return hostStatus;
+        return ipList;
     }
 
     //判断IP是否存活

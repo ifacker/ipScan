@@ -1,12 +1,11 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,8 +16,6 @@ import sample.dataType.HostStatus;
 import sample.function.FileFun;
 import sample.function.IpScan;
 import sample.function.LoadConfig;
-import sample.function.OpenFile;
-import sample.nmap4j.Nmap4j;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -51,6 +48,7 @@ public class Controller {
         Button btnClear = new Button("清理 IP");
         Button btnFuck = new Button("一键日卫星");
         Button btnSetting = new Button("设置");
+        Button btnStop = new Button("停止");
 
         //创建textArea
         TextArea textAreaIn = new TextArea();
@@ -60,6 +58,11 @@ public class Controller {
         //创建标签
         Label labelGood = new Label("Good IP:");
         Label labelBad = new Label("Bad IP:");
+
+        //创建一个进度控件
+//        final ProgressIndicator progressIndicators = null;
+        ProgressBar progressBar = new ProgressBar(0);
+//        progressBar.setProgress(0.5);
 
         //给各个控件赋能
         btnAdd.setOnAction(new EventHandler<ActionEvent>() {
@@ -93,39 +96,95 @@ public class Controller {
 //                }
             }
         });
+        final Thread[] tmpThread = new Thread[1];
+        final ProgressIndicator[] progressIndicators = new ProgressIndicator[1];
+
         btnStart.setOnAction(new EventHandler<ActionEvent>() {
+//            private ProgressIndicator progressIndicators;
+
             @Override
             public void handle(ActionEvent event) {
+//                progressBar.setProgress(0);
 
-                //清理输出窗口
-                textAreaOutGood.setText("");
-                textAreaOutBad.setText("");
+                ProgressIndicator progressIndicator = new ProgressIndicator();
+                progressIndicators[0] = progressIndicator;
+                vBox.getChildren().add(progressIndicator);
+                btnStart.setDisable(true);
+
+
+                //创建线程
+//                Thread btnStartThread = null;
+
+                Thread btnStartThread = new Thread() {
+                    public void run() {
+                        //清理输出窗口
+                        textAreaOutGood.setText("");
+                        textAreaOutBad.setText("");
 
 //                OpenFile openFile = new OpenFile();
 //                ConfigType configType = openFile.readConfigFile();
-                //加载配置文件
-                LoadConfig loadConfig = new LoadConfig();
-                ConfigType configType = loadConfig.loadConfig("config.ini");
+                        //加载配置文件
+                        LoadConfig loadConfig = new LoadConfig();
+                        ConfigType configType = loadConfig.loadConfig("config.ini");
 
-                //扫描
-                IpScan ipScan = new IpScan(configType.getConfigBody());
+                        //扫描
+                        IpScan ipScan = new IpScan(configType.getConfigBody());
 //                ipScan.ipScanner("10.54.19.75");
 
-                //获取IP地址
+                        //获取IP地址
 //                System.out.println(textAreaIn.getText());
-                String ipAll = textAreaIn.getText();
-                if (!ipAll.equals("")) {
-                    HostStatus hostStatus = ipScan.hostLife(ipAll);
+                        String ipAll = textAreaIn.getText();
+                        if (!ipAll.equals("")) {
+                            List<HostStatus> hostStatusList = ipScan.hostLife(ipAll);
 
-                    //处理 good IP 和 bad IP 并分别显示
-                    if (hostStatus.getStatus() != null && hostStatus.getStatus()){
-                        textAreaOutGood.setText(hostStatus.getHost());
-                    } else if (hostStatus.getStatus() != null && !hostStatus.getStatus()) {
-                        textAreaOutBad.setText(hostStatus.getHost());
+                            for (HostStatus hostStatus : hostStatusList) {
+
+                                //处理 good IP 和 bad IP 并分别显示
+                                if (hostStatus.getStatus() != null && hostStatus.getStatus()) {
+                                    textAreaOutGood.setText(textAreaOutGood.getText() + hostStatus.getHost() + "\r\n");
+                                } else if (hostStatus.getStatus() != null && !hostStatus.getStatus()) {
+                                    textAreaOutBad.setText(textAreaOutBad.getText() + hostStatus.getHost() + "\r\n");
+                                }
+
+                                //扫描进度
+//                                int len = hostStatusList.size();
+//                                int progress = 100/len;
+//                                progressBar.setProgress(++progress);
+//                                System.out.println(len);
+
+
+                            }
+//                            progressBar.setProgress(1);
+//                            vBox.clearConstraints(progressIndicator);
+
+                            //此方法可以避免 在javafx中的非主线程中操作UI而导致的报错 ！！！！牛逼
+                            Platform.runLater(() -> {
+                                vBox.getChildren().remove(progressIndicator);
+                            });
+                            btnStart.setDisable(false);
+                        } else {
+                            //弹窗，需要加一个类！
+                        }
                     }
-                } else {
-                    //弹窗，需要加一个类！
+                };
+                btnStartThread.start();
+
+                tmpThread[0] = btnStartThread;
+
+//                progressIndicators[0].setProgress(1);
+                //这里还差一个停止功能 还有开始的时候屏蔽开始按钮
+
+
+            }
+        });
+        btnStop.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (tmpThread[0] != null) {
+                    tmpThread[0].stop();
+                    vBox.getChildren().remove(progressIndicators[0]);
                 }
+                btnStart.setDisable(false);
             }
         });
         btnClear.setOnAction(new EventHandler<ActionEvent>() {
@@ -158,10 +217,24 @@ public class Controller {
 
         hBoxUp.getChildren().add(textAreaIn);
         hBoxUp.getChildren().add(btnGridPane);
+
+        //设置按钮大小
+        btnGridPane.setPrefWidth(200);
+        btnStart.setMaxWidth(btnGridPane.getPrefWidth());
+        btnAdd.setMaxWidth((btnGridPane.getPrefWidth()));
+        btnClear.setMaxWidth(btnGridPane.getPrefWidth());
+        btnSetting.setMaxWidth(btnGridPane.getPrefWidth());
+        btnStop.setMaxWidth(btnGridPane.getPrefWidth());
+
+//        btnStart.setMaxWidth(double.);
+
         btnGridPane.add(btnStart, 0, 0);
+        btnGridPane.add(btnStop, 1, 0);
         btnGridPane.add(btnAdd, 0, 1);
-        btnGridPane.add(btnClear, 0, 2);
-        btnGridPane.add(btnSetting, 0, 3);
+        btnGridPane.add(btnClear, 1, 1);
+        btnGridPane.add(btnSetting, 0, 2);
+//        btnGridPane.add(progressIndicator, 0, 3);
+//        btnGridPane.add(progressBar, 0, 3);
 //        btnGridPane.add(btnFuck, 0,3);
 //        hBoxUp.getChildren().add(btnAdd);
 //        hBoxUp.getChildren().add(btnStart);
@@ -177,7 +250,8 @@ public class Controller {
 
         vBox.getChildren().add(hBoxUp);
         vBox.getChildren().add(hBoxDown);
-
+//        vBox.getChildren().add(progressBar);
+//        vBox.getChildren().add(progressIndicators[0]);
 
         root.add(vBox, 0, 0);
 

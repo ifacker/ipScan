@@ -1,4 +1,0 @@
-# Nmap 7.80 scan initiated Sat Mar 14 23:09:50 2020 as: D:\\app\\Nmap\\nmap -sn -v -iL .iptmp.txt -oG .iptmp2.txt
-# Ports scanned: TCP(0;) UDP(0;) SCTP(0;) PROTOCOLS(0;)
-Host: 10.0.0.1 (XiaoQiang)	Status: Up
-# Nmap done at Sat Mar 14 23:09:51 2020 -- 1 IP address (1 host up) scanned in 1.65 seconds
