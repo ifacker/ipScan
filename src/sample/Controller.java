@@ -68,32 +68,43 @@ public class Controller {
         btnAdd.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                FileChooser fileChooser = new FileChooser();
-                File file = fileChooser.showOpenDialog(primaryStage);
-                if (file == null) {
-                    return;
-                }
-                //获取选择目录的地址
-                String filePath = file.getPath();
 
-                //打开并读取文件
+                Thread thread = new Thread(){
+                    public void run(){
+                        FileChooser fileChooser = new FileChooser();
+                        final File[] file = new File[1];
+                        Platform.runLater(()->{
 
-                FileFun fileFun = new FileFun();
-                BufferedReader bufferedReader = fileFun.readFile(filePath);
-                String str;
-                try {
-                    while ((str = bufferedReader.readLine()) != null) {
-                        textAreaIn.setText(textAreaIn.getText() + str + "\r\n");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                            file[0] = fileChooser.showOpenDialog(primaryStage);
+                        });
+                        if (file[0] == null) {
+                            return;
+                        }
+                        //获取选择目录的地址
+                        String filePath = file[0].getPath();
 
+                        //打开并读取文件
+
+                        FileFun fileFun = new FileFun();
+                        BufferedReader bufferedReader = fileFun.readFile(filePath);
+                        String str;
+                        try {
+                            while ((str = bufferedReader.readLine()) != null) {
+                                textAreaIn.setText(textAreaIn.getText() + str + "\r\n");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 //                OpenFile openFile = new OpenFile();
 //                List<String> ipList = openFile.readFile(filePath);
 //                for (String ip : ipList) {
 //                    textAreaIn.setText(textAreaIn.getText() + ip + "\r\n");
 //                }
+
+                    }
+                };
+                thread.start();
+
             }
         });
         final Thread[] tmpThread = new Thread[1];
@@ -105,36 +116,37 @@ public class Controller {
             @Override
             public void handle(ActionEvent event) {
 //                progressBar.setProgress(0);
+                if(!textAreaIn.getText().equals("")) {
 
-                ProgressIndicator progressIndicator = new ProgressIndicator();
-                progressIndicators[0] = progressIndicator;
-                vBox.getChildren().add(progressIndicator);
-                btnStart.setDisable(true);
+                    ProgressIndicator progressIndicator = new ProgressIndicator();
+                    progressIndicators[0] = progressIndicator;
+                    vBox.getChildren().add(progressIndicator);
+                    btnStart.setDisable(true);
 
 
-                //创建线程
+                    //创建线程
 //                Thread btnStartThread = null;
 
-                Thread btnStartThread = new Thread() {
-                    public void run() {
-                        //清理输出窗口
-                        textAreaOutGood.setText("");
-                        textAreaOutBad.setText("");
+                    Thread btnStartThread = new Thread() {
+                        public void run() {
+                            //清理输出窗口
+                            textAreaOutGood.setText("");
+                            textAreaOutBad.setText("");
 
 //                OpenFile openFile = new OpenFile();
 //                ConfigType configType = openFile.readConfigFile();
-                        //加载配置文件
-                        LoadConfig loadConfig = new LoadConfig();
-                        ConfigType configType = loadConfig.loadConfig("config.ini");
+                            //加载配置文件
+                            LoadConfig loadConfig = new LoadConfig();
+                            ConfigType configType = loadConfig.loadConfig("config.ini");
 
-                        //扫描
-                        IpScan ipScan = new IpScan(configType.getConfigBody());
+                            //扫描
+                            IpScan ipScan = new IpScan(configType.getConfigBody());
 //                ipScan.ipScanner("10.54.19.75");
 
-                        //获取IP地址
+                            //获取IP地址
 //                System.out.println(textAreaIn.getText());
-                        String ipAll = textAreaIn.getText();
-                        if (!ipAll.equals("")) {
+                            String ipAll = textAreaIn.getText();
+//                        if (!ipAll.equals("")) {
                             List<HostStatus> hostStatusList = ipScan.hostLife(ipAll);
 
                             for (HostStatus hostStatus : hostStatusList) {
@@ -162,19 +174,17 @@ public class Controller {
                                 vBox.getChildren().remove(progressIndicator);
                             });
                             btnStart.setDisable(false);
-                        } else {
-                            //弹窗，需要加一个类！
-                        }
-                    }
-                };
-                btnStartThread.start();
 
-                tmpThread[0] = btnStartThread;
+                        }
+                    };
+                    btnStartThread.start();
+
+                    tmpThread[0] = btnStartThread;
 
 //                progressIndicators[0].setProgress(1);
-                //这里还差一个停止功能 还有开始的时候屏蔽开始按钮
+                    //这里还差一个停止功能 还有开始的时候屏蔽开始按钮
 
-
+                }
             }
         });
         btnStop.setOnAction(new EventHandler<ActionEvent>() {
