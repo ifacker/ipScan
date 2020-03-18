@@ -1,4 +1,4 @@
-package sample.dataType;
+package sample.bean;
 
 /**
  * @Description: IP是否存活$

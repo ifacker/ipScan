@@ -1,4 +1,4 @@
-package sample.dataType;
+package sample.bean;
 
 public class ConfigType {
 

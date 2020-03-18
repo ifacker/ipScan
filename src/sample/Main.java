@@ -5,9 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.dataType.ConfigType;
-import sample.function.OpenFile;
-import sample.test.Test;
 
 public class Main extends Application {
 

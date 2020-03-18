@@ -1,9 +1,8 @@
 package sample.function;
 
-import sample.dataType.HostStatus;
+import sample.bean.HostStatus;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +47,13 @@ public class IpScan {
 
     public List<HostStatus> hostLife(String body) {
         FileFun fileFun = new FileFun();
+        if (!path.equals("")){
+            path += "/";
+        }
         String tmpFilePath = ".iptmp.txt";
         String tmp2FilePath = ".iptmp2.txt";
 //        String strCmd = path + "/nmap -sn -v -iL " + tmpFilePath + " -oG " + tmp2FilePath;
-        String strCmd = path + "/nmap -sn -v -iL " + tmpFilePath;
+        String strCmd = path + "nmap -sn -v -iL " + tmpFilePath;
 
         //生成缓存文件
         fileFun.saveFile(tmpFilePath, body);

@@ -1,7 +1,5 @@
 package sample.function;
 
-import sample.dataType.ConfigType;
-
 import java.io.*;
 
 public class FileFun {

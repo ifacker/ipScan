@@ -1,11 +1,16 @@
 package sample.test;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import sample.bean.HostStatus;
 import sample.function.IpScan;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class Test {
 
+    private static java.lang.Object Object;
     String filePath = "//Users//jiangmengwei//IdeaProjects//ipScan//src//sample//test//ip.txt";
 
     public void openFile(){
@@ -45,21 +50,17 @@ public class Test {
         System.out.println(str);
     }
 
-    public static void main(String args[]){
-        String Str = new String("Host: 10.54.18.236 ()\tStatus: Up");
+    public static void main(String args[]) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, ClassNotFoundException {
+//        Class<HostStatus> cla = HostStatus.class;
+        HostStatus hostStatus = new HostStatus();
+        Class<?> cla = Class.forName("sample.bean.HostStatus");
 
-        System.out.print("Return Value :" );
-        System.out.println(Str.startsWith("Welcome") );
-
-        System.out.print("Return Value :" );
-        System.out.println(Str.startsWith("Tutorials") );
-
-        System.out.print("Return Value :" );
-        System.out.println(Str.startsWith("Yiibai") );
-
-
-        Integer a = Str.indexOf("\t");
-        System.out.println(a);
+//        HostStatus hostStatus = cla.newInstance();
+//        Method methodStatus = cla.getMethod("getStatus", Boolean.class);
+        Method methodHost = cla.getMethod("setHost", String.class);
+        methodHost.invoke( hostStatus, "10.0.0.1");
+//        Object objectStatus = methodStatus.invoke(cla.newInstance(), true);
+//        Object objectHost = methodHost.invoke(cla.newInstance(), "10.0.0.1");
+        System.out.println(hostStatus.getHost());
     }
-
 }

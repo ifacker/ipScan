@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import sample.dataType.ConfigType;
+import sample.bean.ConfigType;
 import sample.function.FileFun;
 
 import java.io.File;

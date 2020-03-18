@@ -1,6 +1,6 @@
 package sample.function;
 
-import sample.dataType.ConfigType;
+import sample.bean.ConfigType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
