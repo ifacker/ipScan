@@ -16,7 +16,7 @@ public class Main extends Application {
 //        test.command("whoami");
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("探测存活主机（ipScan）");
+        primaryStage.setTitle("SHIDIAO -- v 2.0");
 
         //加载配置文件
 //        ConfigType configType = new ConfigType();
