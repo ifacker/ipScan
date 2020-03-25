@@ -3,6 +3,7 @@ package sample.tabGUI.tabTwo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -15,6 +16,8 @@ import sample.function.FileFun;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description: SSH 爆破模块$
@@ -28,6 +31,9 @@ import java.io.IOException;
 public class TabTwoSshMod {
 
     Double BUTTON_WIDTH = 90.0;
+    List<String> listIP = new ArrayList<String>();
+    List<String> listUname = new ArrayList<String>();
+    List<String> listPasswd = new ArrayList<>();
 
     public Pane sshMod(Stage primaryStage){
 
@@ -56,8 +62,7 @@ public class TabTwoSshMod {
         Button buttonStart = new Button("开始");
 
         //创建一个进度条
-        ProgressBar progressBar = new ProgressBar();
-        progressBar.setProgress(0.5);
+        ProgressBar progressBar = new ProgressBar(0);
 
 
         //GridPane
@@ -184,6 +189,7 @@ public class TabTwoSshMod {
                     try {
                         if ((str = bufferedReader.readLine()) == null) break;
                         textAreaIP.setText(textAreaIP.getText() + str + "\n");
+                        listIP.add(str);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -196,12 +202,16 @@ public class TabTwoSshMod {
                 FileChooser fileChooser = new FileChooser();
                 FileFun fileFun = new FileFun();
                 File file = fileChooser.showOpenDialog(primaryStage);
+                if (file == null) {
+                    return;
+                }
                 BufferedReader bufferedReader = fileFun.readFile(file.getPath());
                 String str = "";
                 while (true) {
                     try {
                         if (((str = bufferedReader.readLine()) == null)) break;
                         textAreaUserName.setText(textAreaUserName.getText() + str + "\n");
+                        listUname.add(str);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -213,6 +223,9 @@ public class TabTwoSshMod {
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 File file = fileChooser.showOpenDialog(primaryStage);
+                if (file == null) {
+                    return;
+                }
                 FileFun fileFun = new FileFun();
                 BufferedReader bufferedReader = fileFun.readFile(file.getPath());
                 String str = "";
@@ -220,6 +233,7 @@ public class TabTwoSshMod {
                     try {
                         if (((str = bufferedReader.readLine()) == null)) break;
                         textAreaPassword.setText(textAreaPassword.getText() + str + "\n");
+                        listPasswd.add(str);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -247,7 +261,13 @@ public class TabTwoSshMod {
         buttonStart.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                TabTwoSshStart tabTwoSshStart = new TabTwoSshStart();
+                Scene scene = tabTwoSshStart.startPane(listIP, listUname, listPasswd);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("SSH 爆破");
+                stage.show();
+                progressBar.setProgress(-1F);
             }
         });
 

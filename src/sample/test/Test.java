@@ -1,19 +1,27 @@
 package sample.test;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import jcifs.smb.SmbException;
+import jcifs.smb.SmbFile;
 import sample.bean.HostStatus;
 import sample.function.IpScan;
+import sample.function.tab.tabTwo.TabTwoSshThreadPool;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-public class Test {
+public class Test{
 
     private static java.lang.Object Object;
     String filePath = "//Users//jiangmengwei//IdeaProjects//ipScan//src//sample//test//ip.txt";
 
-    public void openFile(){
+    //打开文件测试：
+    private void openFile(){
         BufferedReader bfReader = null;
         try {
             bfReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
@@ -31,7 +39,8 @@ public class Test {
         }
     }
 
-    public void command(String cmdStr){
+    //cmd命令测试
+    private void command(String cmdStr){
         Process process = null;
         try {
             process = Runtime.getRuntime().exec(cmdStr);
@@ -50,8 +59,9 @@ public class Test {
         System.out.println(str);
     }
 
-    public static void main(String args[]) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, ClassNotFoundException {
-//        Class<HostStatus> cla = HostStatus.class;
+    //反射案例：
+    private void fanShe() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        //        Class<HostStatus> cla = HostStatus.class;
         HostStatus hostStatus = new HostStatus();
         Class<?> cla = Class.forName("sample.bean.HostStatus");
 
@@ -62,5 +72,54 @@ public class Test {
 //        Object objectStatus = methodStatus.invoke(cla.newInstance(), true);
 //        Object objectHost = methodHost.invoke(cla.newInstance(), "10.0.0.1");
         System.out.println(hostStatus.getHost());
+    }
+
+
+    //smb链接测试：
+    private void smbLink() {
+        String url = "smb://192.168.31.1/";
+        SmbFile smbFile = null;
+        try {
+            smbFile = new SmbFile(url);
+            for(SmbFile str: smbFile.listFiles()) {
+                System.out.println(str);
+            }
+        } catch (MalformedURLException | SmbException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //线程池测试
+    private void threadPoolText(){
+
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5,10, 200, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(5));
+
+        for (int i = 0; i < 50; i++) {
+            TestThreadPool testThreadPool = new TestThreadPool(i);
+            threadPoolExecutor.execute(testThreadPool);
+
+        }
+
+    }
+
+    //测试ssh连接
+    private void connectSshText(){
+        String ip = "localhost";
+        String uName = "ifacker";
+        String passwd = "13445";
+
+        TabTwoSshThreadPool tabTwoSshThreadPool = new TabTwoSshThreadPool(ip, uName, passwd);
+        tabTwoSshThreadPool.run();
+
+    }
+
+
+    //主函数
+    public static void main(String args[])  {
+        Test test = new Test();
+//        test.smbLink();
+        test.connectSshText();
+
+
     }
 }
